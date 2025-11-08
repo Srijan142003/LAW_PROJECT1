@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %}Verdict Result{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px;">
+    <div class="text-center my-4">
+        <h1>📜 AI-Generated Verdict</h1>
+        <a href="/trial" class="btn btn-neon mt-2">Submit a New Case</a>
+        <a href="/" class="btn btn-neon mt-2">Back to Home</a>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h4>Final Judgment</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">I. Summary of Arguments</h5>
+            <p class="card-text verdict-section">{{ summary }}</p>
+            <hr style="border-color: var(--border-color);">
+            <h5 class="card-title">II. Findings of Fact</h5>
+            <p class="card-text verdict-section">{{ findings }}</p>
+            <hr style="border-color: var(--border-color);">
+            <h5 class="card-title">III. Final Order</h5>
+            <p class="card-text verdict-section">{{ order }}</p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h4>Provide Feedback on this Verdict</h4>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('submit_feedback') }}" method="POST">
+                <div class="mb-3">
+                    <label for="case_type" class="form-label">What sector does this case belong to?</label>
+                    <select class="form-select" id="case_type" name="case_type" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option value="Criminal">Criminal Law</option>
+                        <option value="Civil">Civil Law</option>
+                        <option value="Family">Family Law</option>
+                        <option value="Corporate">Corporate Law</option>
+                        <option value="Property">Property Law</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">How helpful was this verdict?</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="rating_positive" value="Positive" required>
+                            <label class="form-check-label" for="rating_positive">Helpful</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="rating_neutral" value="Neutral">
+                            <label class="form-check-label" for="rating_neutral">Neutral</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="rating_negative" value="Negative">
+                            <label class="form-check-label" for="rating_negative">Not Helpful</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="remarks" class="form-label">Additional Remarks</label>
+                    <textarea class="form-control" id="remarks" name="remarks" rows="3" placeholder="Your feedback helps us improve..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-neon">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

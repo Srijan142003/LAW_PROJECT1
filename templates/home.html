@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+    <div class="card text-center p-4" style="max-width: 600px;">
+        <div class="card-body">
+            <h1 class="mb-3">Welcome to Justice For All</h1>
+            <p class="lead text-muted mb-4">
+                Choose how you'd like to proceed.
+            </p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a href="/trial" class="btn btn-neon">⚖️ Go for Court Trial Simulation</a>
+                <a href="/consult" class="btn btn-neon">💬 Consult a Lawyer</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h4>User Login Activity</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Login Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for username, count in user_visits %}
+                            <tr>
+                                <td>{{ username }}</td>
+                                <td>{{ count }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="2">No user activity recorded yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h4>Case Sector Distribution</h4>
+                </div>
+                <div class="card-body">
+                    {% if case_counts %}
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Case Sector</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for case_type, count in case_counts.items() %}
+                            <tr>
+                                <td>{{ case_type }}</td>
+                                <td>{{ count }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>No case data submitted yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>User Feedback on Verdicts</h4>
+        </div>
+        <div class="card-body">
+            {% for feedback in feedback_list|reverse %}
+            <div class="border-bottom border-secondary pb-2 mb-3">
+                <p><strong>User:</strong> {{ feedback.username }} | <strong>Case Type:</strong> {{ feedback.case_type }} | <strong>Rating:</strong> {{ feedback.rating }}</p>
+                <blockquote class="blockquote mb-0">
+                    <p>"{{ feedback.feedback }}"</p>
+                    <footer class="blockquote-footer text-muted">{{ feedback.timestamp }}</footer>
+                </blockquote>
+            </div>
+            {% else %}
+            <p>No feedback has been submitted yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
