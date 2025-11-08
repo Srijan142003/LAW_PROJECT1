@@ -1,0 +1,144 @@
+/* --- Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- Neon Color Palette & Global Styles --- */
+:root {
+    --dark-bg: #0a0a1a;
+    --neon-blue: #00bfff;
+    --neon-pink: #ff00ff;
+    --text-color: #e0e0e0;
+    --border-color: rgba(0, 191, 255, 0.3);
+    --card-bg: rgba(20, 20, 40, 0.7);
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    cursor: none; /* Hide the default cursor */
+    overflow-x: hidden;
+}
+
+/* --- Custom Cursor --- */
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--neon-blue);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.2s ease-out;
+}
+
+/* Cursor hover effect */
+.cursor-outline.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: rgba(0, 191, 255, 0.2);
+}
+
+
+/* --- General Styling --- */
+.container {
+    max-width: 850px;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+/* --- Card & Form Styling --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+    margin-top: 2rem;
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.form-label {
+    color: var(--neon-blue);
+    font-weight: 600;
+}
+
+.form-control {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.form-control::placeholder {
+    color: rgba(224, 224, 224, 0.5);
+}
+
+/* --- Neon Button --- */
+.btn-neon {
+    background-color: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-neon:hover {
+    background-color: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px var(--neon-blue);
+    transform: translateY(-3px);
+}
+
+/* --- Chatbot Specific Styles (`consult.html`) --- */
+.chat-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+.msg-bubble {
+    backdrop-filter: blur(5px);
+}
+.user-message .msg-bubble {
+    background-color: rgba(255, 0, 255, 0.2);
+    border: 1px solid var(--neon-pink);
+    color: #fff;
+}
+.ai-message .msg-bubble {
+    background-color: rgba(0, 191, 255, 0.2);
+    border: 1px solid var(--neon-blue);
+    color: #fff;
+}
