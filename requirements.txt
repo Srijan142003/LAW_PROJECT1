@@ -1,0 +1,7 @@
+requests
+openai
+Flask
+PyPDF2
+python-docx
+python-dotenv
+scrypt
