@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}Court Trial Simulation{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h1 class="my-2">⚖️ Court Trial Simulation</h1>
+        </div>
+        <div class="card-body p-4">
+            <p class="text-center text-muted mb-4">
+                Submit arguments from both sides to receive an AI-generated verdict. The AI will also consider your past cases on similar topics.
+            </p>
+            <form action="/trial" method="post" enctype="multipart/form-data">
+                
+                <!-- NEW: Mandatory Case Type Selection -->
+                <div class="mb-4">
+                    <label for="case_type" class="form-label">Select the Primary Case Sector</label>
+                    <select class="form-select" id="case_type" name="case_type" required>
+                        <option selected disabled value="">Choose a category...</option>
+                        <option value="Criminal Law">Criminal Law</option>
+                        <option value="Civil Law">Civil Law</option>
+                        <option value="Family Law">Family Law</option>
+                        <option value="Corporate Law">Corporate Law</option>
+                        <option value="Property Law">Property Law</option>
+                        <option value="Constitutional Law">Constitutional Law</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <!-- END -->
+
+                <div class="mb-4">
+                    <label for="accuser_statement" class="form-label">Accuser / Plaintiff's Statement</label>
+                    <textarea class="form-control" id="accuser_statement" name="accuser_statement" rows="8" placeholder="Enter the accuser's full argument..." required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="defender_statement" class="form-label">Defender / Defendant's Statement</label>
+                    <textarea class="form-control" id="defender_statement" name="defender_statement" rows="8" placeholder="Enter the defender's full response..." required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="case_file" class="form-label">Upload Supporting Documents (Optional)</label>
+                    <input class="form-control" type="file" id="case_file" name="case_file">
+                    <div class="form-text">Accepted formats: .pdf, .docx, .txt</div>
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-neon btn-lg">Generate Verdict</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
